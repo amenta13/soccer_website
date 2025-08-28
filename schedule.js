@@ -1,22 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const matchList = document.getElementById("matchList");
 
-  const matches = [
-    {
-      league: "Premier League",
-      teams: ["Liverpool", "Bournemouth"],
-      date: "August 15, 2025",
-      time: "3:00 PM EST",
-      platforms: ["USA Network", "Universo", "Fubo", "Sling TV"]
-    },
-    {
-      league: "La Liga",
-      teams: ["Girona", "Rayo Vallecano"],
-      date: "August 15, 2025",
-      time: "1:00 PM EST",
-      platforms: ["ESPN Deportes", "ESPN+"]
-    }
-  ];
+  fetch("data/matches.json")
+  .then(res => res.json())
+  .then(matches => {
+    matches.forEach(match => {
+      // same rendering code
+    });
+  });
 
   matches.forEach(match => {
     const div = document.createElement("div");
