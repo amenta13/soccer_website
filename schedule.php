@@ -1,3 +1,9 @@
+<?php
+
+require_once "api/soccer_data_funcs.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,6 +22,44 @@
   </main>
 
   <!-- TODO: Add set of games for the game week and list them -->
+  <?php
+  $matches = getLeagueMatches("PL", 0);
+
+  // Test raw data output
+  //echo "<pre>";
+  //var_dump($matches);
+  //echo "</pre>";
+
+  ?>
+
+  <div class="schedule-column" >
+
+    <div class="schedule-head">
+      <h1>Premier League</h1>
+    </div>
+
+    <?php if (!empty($matches)): ?>
+      <?php foreach ($matches as $match): ?>
+        <div class="schedule-game">
+          <div class="match-teams">
+            <img src="<?= htmlspecialchars($match["homeTeam"]["crest"]); ?>" class="team-crest">
+            <strong><?= htmlspecialchars($match["homeTeam"]["name"]) ?></strong>
+            vs
+            <strong><?= htmlspecialchars($match["awayTeam"]["name"]) ?></strong>
+            <img src="<?= htmlspecialchars($match["awayTeam"]["crest"]); ?>" class="team-crest">
+          </div>
+          <div class="match-date">
+            <?= formatDate($match["utcDate"]); ?>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <div class="schedule-game">
+        No matches found.
+      </div>
+    <?php endif; ?>
+
+  </div>
 
   <?php require_once "web_elements/footer.php" ?>
 
