@@ -1,68 +1,19 @@
-<?php
-
-require_once "api/soccer_data_funcs.php";
-
-?>
-
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Soccer Schedule</title>
+    <link rel="stylesheet" href="css/style_sheet.css">
+  </head>
+  <body>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Soccer Schedule</title>
-  <link rel="stylesheet" href="css/style_sheet.css">
-</head>
+    <?php require_once "web_elements/navbar.php" ?>
 
-<body>
+    <main>
+      <h1>Schedules</h1>
+    </main>
 
-  <?php require_once "web_elements/navbar.php" ?>
+     <?php require_once "web_elements/footer.php" ?>
 
-  <main>
-    <h1>Upcoming Matches</h1>
-  </main>
-
-  <!-- TODO: Add set of games for the game week and list them -->
-  <?php
-  $matches = getLeagueMatches("PL", 0);
-
-  // Test raw data output
-  //echo "<pre>";
-  //var_dump($matches);
-  //echo "</pre>";
-
-  ?>
-
-  <div class="schedule-column" >
-
-    <div class="schedule-head">
-      <h1>Premier League</h1>
-    </div>
-
-    <?php if (!empty($matches)): ?>
-      <?php foreach ($matches as $match): ?>
-        <div class="schedule-game">
-          <div class="match-teams">
-            <img src="<?= htmlspecialchars($match["homeTeam"]["crest"]); ?>" class="team-crest">
-            <strong><?= htmlspecialchars($match["homeTeam"]["name"]) ?></strong>
-            vs
-            <strong><?= htmlspecialchars($match["awayTeam"]["name"]) ?></strong>
-            <img src="<?= htmlspecialchars($match["awayTeam"]["crest"]); ?>" class="team-crest">
-          </div>
-          <div class="match-date">
-            <?= formatDate($match["utcDate"]); ?>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    <?php else: ?>
-      <div class="schedule-game">
-        No matches found.
-      </div>
-    <?php endif; ?>
-
-  </div>
-
-  <?php require_once "web_elements/footer.php" ?>
-
-</body>
-
+  </body>
 </html>
