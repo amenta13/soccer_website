@@ -1,22 +1,25 @@
 <?php
 require_once "config.php";
 
-function getLeagueMatches(string $league, int $weekOffset): array {
+function getLeagueMatches(?string $league, int $dayOffset, int $dayPeriod): array {
 
     // Check input
-    if (!preg_match("/^[A-Z0-9]+$/", $league)) {
+    if ($league !== null && !preg_match("/^[A-Z0-9]+$/", $league)) {
         return [];
     }
 
-    $startDate = date("Y-m-d", strtotime("today +{$weekOffset} week"));
-    $endDate = date("Y-m-d", strtotime("{$startDate} 1 week"));
+    $startDate = date("Y-m-d", strtotime("today +{$dayOffset} days"));
+    $endDate = date("Y-m-d", strtotime("{$startDate} +{$dayPeriod} days"));
 
     // Test dates
     //echo $startDate;
     //echo $endDate;
 
-    $url = "https://api.football-data.org/v4/matches?" . "competitions=$league" .
-           "&dateFrom=$startDate" . "&dateTo=$endDate";
+    $url = "https://api.football-data.org/v4/matches?" . "&dateFrom=$startDate" . "&dateTo=$endDate";
+
+    if ($league !== null) {
+        $url .= "&competitions=$league";
+    }
 
     // API Request
     $ch = curl_init($url);

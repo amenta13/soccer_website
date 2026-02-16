@@ -26,25 +26,25 @@ require_once "api/soccer_data_funcs.php";
   $league = $_GET['league'] ?? 'PL';
 
   $leagueNames = [
-    'WC'  => 'FIFA World Cup',
-    'CL'  => 'UEFA Champions League',
-    'BL1'  => 'Bundesliga',
-    'DED'  => 'Eredivisie',
-    'BSA'  => 'Campeonato Brasileiro Série A',
-    'PD'  => 'La Liga',
-    'FL1' => 'Ligue 1',
-    'ELC' => 'English Championship',
-    'PPL' => 'Primeira Liga',
-    'EC'  => 'European Championship',
-    'SA'  => 'Serie A',
-    'PL'  => 'Premier League'
-  ];
+      'WC'  => 'FIFA World Cup',
+      'CL'  => 'UEFA Champions League',
+      'EC'  => 'European Championship',
+      'PL'  => 'Premier League',
+      'ELC' => 'English Championship',
+      'PD'  => 'La Liga',
+      'BL1'  => 'Bundesliga',
+      'SA'  => 'Serie A',
+      'FL1' => 'Ligue 1',
+      'BSA'  => 'Campeonato Brasileiro Série A',
+      'DED'  => 'Eredivisie',
+      'PPL' => 'Primeira Liga'
+    ];
 
   if (!array_key_exists($league, $leagueNames)) {
     $league = 'PL';
   }
 
-  $matches = getLeagueMatches($league, 0);
+  $matches = getLeagueMatches($league, 0, 7);
 
   // Test raw data output
   //echo "<pre>";
