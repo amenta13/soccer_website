@@ -83,6 +83,8 @@ h1 {
 
 .nav-links a:hover {
   color: rgb(255, 255, 255);
+  outline: inset rgb(255, 255, 255);
+  outline-offset: 10px;
 }
 
 /* Navbar Dropdown */
@@ -135,7 +137,8 @@ nav-dropdown-toggle {
 }
 
 .nav-dropdown-menu li a:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(100, 190, 100);
+  outline: 0px;
 }
 
 .nav-dropdown:hover .nav-dropdown-menu {
@@ -150,16 +153,43 @@ nav-dropdown-toggle {
 
 /* Footer styling */
 .footer {
-  width: 100%;                  /* full width */
+  width: 100%;                    /* full width */
   background: rgb(0, 80, 0);    /* match navbar color */
   color: rgb(230, 230, 230);    /* text color */
-  text-align: left;            /* center the text */
-  padding: 15px 30px;               /* vertical padding */
+  text-align: left;               /* center the text */
+  padding: 15px 30px;             /* vertical padding */
   box-sizing: border-box;
-  margin-top: 50px;              /* space from content */
+  margin-top: 50px;               /* space from content */
 }
 
-/* Schedule column */
+/* Home Page */
+.league-grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+}
+
+.league-grid div {
+  background-color: rgb(255, 255, 255);
+  border: 25px solid rgb(0, 80, 0);
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.league-grid div:hover {
+  background-color: rgb(100, 190, 100);
+  outline: 0px;
+}
+
+.league-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+/* Today's Games */
 .schedule-column {
   display: flex;
   flex-direction: column;
